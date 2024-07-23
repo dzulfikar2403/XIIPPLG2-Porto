@@ -21,7 +21,7 @@ const postData = async (req,res) => {
     res.json(err)
   }
 }
-
+ 
 const deleteData = async (req,res) => {
   const {id} = req.params;
 
