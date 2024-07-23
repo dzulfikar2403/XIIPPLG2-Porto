@@ -15,7 +15,7 @@ import jsIco from "../../assets/js.svg";
 import htmlIco from "../../assets/html.svg";
 import cssIco from "../../assets/css.svg";
 import Slider from "react-slick";
-// css
+import axios from "axios";
 
 const GradientLayout = ({ children }) => {
   return (
@@ -104,6 +104,18 @@ const AboutSection = () => {
 };
 
 const GallerySection = () => {
+  const [thumbnail, setThumbnail] = useState(null);
+  const getDataGallery = async () => {
+    const res = await axios.get("http://localhost:3000/gallery");
+    const slice3 = res.data.slice(0, 3);
+
+    setThumbnail(slice3);
+  };
+
+  useEffect(() => {
+    getDataGallery();
+  }, []);
+
   return (
     <div id="Gallery" className="px-4 relative">
       <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] bg-[#FFBD5B] blur-[150px] rounded-3xl w-40 h-40 md:w-80 md:h-64"></div>
@@ -113,10 +125,14 @@ const GallerySection = () => {
           <Link to={"/gallery"} className="text-sm flex justify-end items-center gap-3 text-white font-light">
             see all memories <HiArrowNarrowRight className="w-6" />
           </Link>
-          <div className="grid grid-cols-1 place-items-center md:grid-cols-3">
-            <CardPhotos photo={abstractImg} title={"Sumpah Pemuda Day"} datePhoto={"28 Oktober 2024"} />
-            <CardPhotos photo={abstractImg} title={"Sumpah Pemuda Day"} datePhoto={"28 Oktober 2024"} scale={2} />
-            <CardPhotos photo={abstractImg} title={"Sumpah Pemuda Day"} datePhoto={"28 Oktober 2024"} />
+          <div className="grid grid-cols-1 place-items-center gap-12 md:gap-0 md:grid-cols-3">
+            {thumbnail && (
+              <>
+                <CardPhotos photo={thumbnail[0].thumbnail} title={thumbnail[0].name} datePhoto={thumbnail[0].dateEvent} />
+                <CardPhotos photo={thumbnail[1].thumbnail} title={thumbnail[1].name} datePhoto={thumbnail[1].dateEvent} scale={2} />
+                <CardPhotos photo={thumbnail[2].thumbnail} title={thumbnail[2].name} datePhoto={thumbnail[2].dateEvent} />
+              </>
+            )}
           </div>
         </div>
       </div>
