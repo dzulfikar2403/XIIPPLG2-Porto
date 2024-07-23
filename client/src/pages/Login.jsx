@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../components/element/Logo";
+import Logo from "../components/element/LogoText";
 import abstractImg from "../assets/abstract-design.jpg";
 import logoClass from "../assets/logoXIIPPLG2New.png";
 import InputEl from "../components/element/InputEl";

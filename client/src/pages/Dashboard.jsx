@@ -19,13 +19,13 @@ const Dashboard = () => {
           </button>
           <div className="absolute top-[50%] -translate-y-[50%]">
             <div className="flex flex-col gap-12 px-4">
-              <Link title="Dashboard">
+              <Link title="Dashboard" to={'/dashboard'}>
                 <HiHome />
               </Link>
-              <Link title="Gallery">
+              <Link title="Gallery" to={'/dashboard/gallery'}>
                 <HiBookOpen />
               </Link>
-              <Link title="Data-siswa">
+              <Link title="Data-siswa" to={'/dashboard/dataSiswa'}>
                 <HiClipboardList />
               </Link>
             </div>

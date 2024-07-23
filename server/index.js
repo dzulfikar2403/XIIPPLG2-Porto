@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const usersRouter = require("./routers/users");
+const galleryRouter = require("./routers/gallery");
 const app = express();
 const PORT = 3000;
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", usersRouter);
+app.use("/gallery", galleryRouter);
 
 app.listen(PORT, (err) => {
   if (err) console.log(`errcon : ${err}`);
