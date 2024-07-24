@@ -24,12 +24,12 @@ const getDataById = async (req,res) => {
 }
 
 const postData = async (req,res) => {
-  const {name,tanggalLahir,instagram,hobi,jabatan} = req.body;
+  const {name,tanggalLahir,instagram,github,linkedin,hobi,jabatan} = req.body;
   const foto = req.files.foto[0].filename;
   const cv = req.files.cv[0].filename;
 
   try {
-    await Siswa.create({name,tanggalLahir,instagram,hobi,jabatan,foto,cv})
+    await Siswa.create({name,jabatan,tanggalLahir,instagram,foto,cv,hobi,github,linkedin,})
     res.json("success post")
   } catch (err) {
     res.json(err.message)

@@ -4,7 +4,8 @@ const gallerySchema = new mongoose.Schema({
   thumbnail: String,
   images: [String],
   name: String,
-  dateEvent: String
+  dateEvent: String,
+  description: String
 },{timestamps: true})
 
 const Gallery = mongoose.model("Gallery",gallerySchema);

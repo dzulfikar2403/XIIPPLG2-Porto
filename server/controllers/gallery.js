@@ -10,7 +10,7 @@ const getData = async (req,res) => {
 }
 
 const postData = async (req,res) => {
-  const {name,dateEvent} = req.body;
+  const {name,dateEvent,description} = req.body;
   const files = req.files;
   const arrFiles = files.map(el => el.filename)
 
@@ -20,7 +20,7 @@ const postData = async (req,res) => {
   }
 
   try {
-    await Gallery.create({thumbnail: arrFiles[0],images: arrFiles,name,dateEvent});
+    await Gallery.create({thumbnail: arrFiles[0],images: arrFiles,name,dateEvent,description});
     res.json('succes post data')
   } catch (err) {
     res.json(err)

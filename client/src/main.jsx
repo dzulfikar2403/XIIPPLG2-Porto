@@ -5,13 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
+import GallerryPage from "./pages/GallerryPage.jsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<p>galleryPage</p>} />
+        <Route path="/gallery" element={<GallerryPage />} />
         <Route path="/dataSiswa" element={<p>data-siswa Page</p>} />
         <Route path="/dataSiswa/:id" element={<p>detail data-siswa</p>} />
         <Route path="/login" element={<Login />} />
