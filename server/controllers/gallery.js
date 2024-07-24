@@ -14,6 +14,11 @@ const postData = async (req,res) => {
   const files = req.files;
   const arrFiles = files.map(el => el.filename)
 
+  const maxFile = 3;
+  if(files.length > maxFile){
+    res.json("maximal file 3")
+  }
+
   try {
     await Gallery.create({thumbnail: arrFiles[0],images: arrFiles,name,dateEvent});
     res.json('succes post data')
