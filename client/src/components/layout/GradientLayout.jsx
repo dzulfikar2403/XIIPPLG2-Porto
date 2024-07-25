@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineArrowNarrowDown } from "react-icons/hi";
 import HeaderText from "../element/TitleText";
-import abstractImg from "../../assets/abstract-design.jpg";
 import HeroImg from "../../assets/heroImg.png";
 import { Link } from "react-router-dom";
 import { HiArrowNarrowRight } from "react-icons/hi";
@@ -14,7 +13,7 @@ import ReactIco from "../../assets/react.svg";
 import jsIco from "../../assets/js.svg";
 import htmlIco from "../../assets/html.svg";
 import cssIco from "../../assets/css.svg";
-import Slider from "react-slick";
+
 
 const GradientLayout = ({ children }) => {
   return (
@@ -63,7 +62,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="flex items-center gap-4 mx-auto md:gap-5 ">
-          <a href="#About" className="px-3 py-1 rounded-3xl border-2 text-white font-bold flex items-center gap-1 bg-black border-[#FFBD5B] md:text-lg">
+          <a href="#About" className="px-3 py-1 transition-all duration-500 rounded-3xl border-2 text-white font-bold flex items-center gap-1 bg-black border-[#FFBD5B] md:text-lg hover:scale-105">
             <p>Next</p>{" "}
             <span>
               <HiOutlineArrowNarrowDown />
@@ -102,7 +101,7 @@ const AboutSection = () => {
   );
 };
 
-const GallerySection = ({data}) => {
+const GallerySection = ({ data }) => {
   return (
     <div id="Gallery" className="px-4 relative">
       <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] bg-[#FFBD5B] blur-[150px] rounded-3xl w-40 h-40 md:w-80 md:h-64"></div>
@@ -112,9 +111,7 @@ const GallerySection = ({data}) => {
           <Link to={"/gallery"} className="text-sm flex justify-end items-center gap-3 text-white font-light">
             see all memories <HiArrowNarrowRight className="w-6" />
           </Link>
-          <div className="grid grid-cols-1 place-items-center gap-12 md:gap-0 md:grid-cols-3">
-            {data && data.map((el,i) => <CardPhotos key={i} data={el} scale={(i + 1) === 2 ? 2 : 1} />)}
-          </div>
+          <div className="grid grid-cols-1 place-items-center gap-12 md:gap-0 md:grid-cols-3">{data && data.map((el, i) => <CardPhotos key={i} data={el} scale={i + 1 === 2 ? 2 : 1} />)}</div>
         </div>
       </div>
     </div>
@@ -122,28 +119,6 @@ const GallerySection = ({data}) => {
 };
 
 const StudentSection = () => {
-  const [slideView, setSlideView] = useState(0);
-  const screenOpt = () => {
-    if (window.screen.width > 500) {
-      setSlideView(4);
-    } else {
-      setSlideView(1);
-    }
-  };
-
-  var settings = {
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: slideView,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-
-  useEffect(() => {
-    screenOpt();
-  }, [window.screen.width]);
-
   return (
     <div id="Profile" className="px-4 py-4">
       <HeaderText text1={"Our"} text2={"Profiles"} />
@@ -151,17 +126,13 @@ const StudentSection = () => {
         <Link to={"/dataSiswa"} className="text-sm flex justify-end items-center gap-3 text-white font-light">
           see all profiles <HiArrowNarrowRight className="w-6 h-8" />
         </Link>
-        <div className="w-full px-11 md:px-14 py-4">
-          {/* <div className="grid grid-cols-1 gap-14 place-items-center md:gap-0 md:grid-cols-4 py-2"></div> */}
-          <Slider {...settings}>
+        <div className="w-full px-4 md:px-4 py-4">
+          <div className="grid grid-cols-1 gap-14 place-items-center md:gap-0 md:grid-cols-4 py-2">
             <CardSiswa />
             <CardSiswa />
             <CardSiswa />
             <CardSiswa />
-            <CardSiswa />
-            <CardSiswa />
-            <CardSiswa />
-          </Slider>
+          </div>
         </div>
       </div>
     </div>

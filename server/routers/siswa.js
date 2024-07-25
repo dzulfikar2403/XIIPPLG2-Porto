@@ -8,7 +8,7 @@ router.route('/')
   .post(upload.fields([{name: "foto",maxCount: 1},{name: "cv",maxCount: 1}]), siswaController.postData)
 
 router.get('/:id',siswaController.getDataById)
-router.put('/:id')
+router.put('/:id',upload.fields([{name: "foto",maxCount: 1},{name: "cv",maxCount: 1}]),siswaController.updateData)
 router.delete('/:id',siswaController.deleteData)
 
 module.exports = router
