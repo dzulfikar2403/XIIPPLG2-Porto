@@ -6,6 +6,9 @@ import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home.jsx";
 import GallerryPage from "./pages/GallerryPage.jsx";
+import SiswaPage from "./pages/SiswaPage.jsx";
+import DetailSiswa from "./pages/DetailSiswa.jsx";
+import DetailGallery from "./pages/DetailGallery.jsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,8 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<GallerryPage />} />
-        <Route path="/dataSiswa" element={<p>data-siswa Page</p>} />
-        <Route path="/dataSiswa/:id" element={<p>detail data-siswa</p>} />
+        <Route path="/gallery/:id" element={<DetailGallery />} />
+        <Route path="/dataSiswa" element={<SiswaPage />} />
+        <Route path="/dataSiswa/:id" element={<DetailSiswa />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/gallery" element={<p>gallery</p>} />
