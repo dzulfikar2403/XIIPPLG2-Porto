@@ -5,7 +5,7 @@ const usersRouter = require("./routers/users");
 const galleryRouter = require("./routers/gallery");
 const siswaRouter = require("./routers/siswa");
 const app = express();
-const PORT = 3000;
+require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,7 +26,7 @@ app.use("/users", usersRouter);
 app.use("/gallery", galleryRouter);
 app.use("/siswa", siswaRouter);
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT, (err) => {
   if (err) console.log(`errcon : ${err}`);
-  console.log(`succes connect runnning on port ${PORT}`);
+  console.log(`succes connect runnning on port ${process.env.PORT}`);
 });
