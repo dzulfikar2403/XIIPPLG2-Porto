@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -5,7 +6,6 @@ const usersRouter = require("./routers/users");
 const galleryRouter = require("./routers/gallery");
 const siswaRouter = require("./routers/siswa");
 const app = express();
-require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

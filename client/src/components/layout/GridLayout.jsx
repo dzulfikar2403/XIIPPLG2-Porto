@@ -7,7 +7,7 @@ import Back from '../element/Back'
 const GridLayout = ({title,children}) => {
 
   return (
-    <div className='min-h-screen bg-[#251F17]'>
+    <div className='relative min-h-screen bg-[#251F17]'>
       <Back to={'/'}/>
       <div className='px-4 py-3'>
         <div className='p-4 flex flex-col justify-center items-center'>

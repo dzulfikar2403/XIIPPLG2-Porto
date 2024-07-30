@@ -13,15 +13,16 @@ const Home = () => {
     setThumbnail(slice3);
   };
 
-  const fetchData = async () => {
+  const getDataSiswa = async () => {
     const res = await axios.get('http://localhost:3000/siswa/')
     
-    setSiswa(res.data);
+    const slice4 = res.data.slice(0, 4)
+    setSiswa(slice4);
   }
 
   useEffect(() => {
     getDataGallery();
-    fetchData();
+    getDataSiswa();
   }, []);
 
 

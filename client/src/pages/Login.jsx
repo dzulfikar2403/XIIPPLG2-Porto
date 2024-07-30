@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../components/element/LogoText";
 import abstractImg from "../assets/abstract-design.jpg";
 import logoClass from "../assets/logoXIIPPLG2New.png";
 import InputEl from "../components/element/InputEl";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/reducer/authSlice";
+import useUser from "../hooks/useUser";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.authSlice);
+  const { getFunc } = useUser();
+
   const [error, setError] = useState(null);
   const [preData, setPreData] = useState({
     email: "",
@@ -25,16 +33,32 @@ const Login = () => {
     e.preventDefault();
     const checkData = await axios.post("http://localhost:3000/users/login", preData);
 
-    if (checkData.data === "success") {
-      navigate("/dashboard");
-    }else{
+    if (typeof checkData.data === "object") {
+      localStorage.setItem("user", JSON.stringify(checkData.data));
+      dispatch(login(checkData.data));
+      setError(null);
+    } else {
       setError(checkData.data);
     }
   };
 
+  useEffect(() => {
+    getFunc();
+  }, []);
+
+  useEffect(() => {
+    if (user && !error) {
+      navigate("/dashboard/home");
+    }
+  }, [user, error]);
+
   return (
     <div className="min-h-screen flex gap-2">
       <div className="w-4/5 px-4">
+        <Link to={'/'} className="flex items-center font-bold text-base gap-2">
+          <HiArrowNarrowLeft />
+          <p>back</p>
+        </Link>
         <Logo />
         <div className="flex flex-col items-center justify-center py-4 my-10">
           <h1 className="text-xl font-bold">Sign in</h1>

@@ -1,5 +1,7 @@
 const User = require('../models/users')
 const bcrypt = require('bcrypt')
+const validator = require("validator")
+const jwt = require("jsonwebtoken")
 
 const getUser = async (req,res) => {
   try {
@@ -16,11 +18,29 @@ const getUser = async (req,res) => {
 
 const postUserRegister = async (req,res) => {
   const {name,email,password} = req.body;
+  
   try {
-    await User.create({name,email,password})
+    if(!name || !email || !password){
+      throw Error("all fields must be fill");
+    }
+
+    const checkData = await User.findOne().where("email").equals(email).exec();
+    if(checkData){
+      throw Error('email already exist');
+    }
+    
+    if(!validator.isEmail(email)){
+      throw Error("Invalid email format")
+    }
+    
+
+    const salt = await bcrypt.genSalt(10);
+    const hashPw = await bcrypt.hash(password,salt);
+
+    await User.create({name,email, password: hashPw})
     res.json('succes registered')
   } catch (err) {
-    res.json('Email sudah ada yang pakai ' +err)
+    res.json(err.message)
   }
 }
 
@@ -29,17 +49,19 @@ const postUserLogin = async (req,res) => {
   try {
     const emailMatch = await User.findOne().where('email').equals(email).exec();
     if(!emailMatch){
-      res.json('Invalid email or password')
+      throw Error('Invalid email or password')
     }
 
     const MatchingPwCompare = await bcrypt.compare(password,emailMatch.password)
     if(!MatchingPwCompare){
-      res.json('Invalid email or password')
-    }else{
-      res.json('success')
+      throw Error('Invalid email or password')
     }
+
+    const token = await jwt.sign({_id:emailMatch._id},process.env.SECRET,{ expiresIn: '1d' });
+    res.json({email,token})
+    
   } catch (err) {
-    res.json(err)
+    res.json(err.message)
   } 
 }
 
