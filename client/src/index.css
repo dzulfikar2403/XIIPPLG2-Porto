@@ -36,3 +36,11 @@ body {
 #activeCMS a.active {
   @apply underline underline-offset-4 text-black font-medium;
 }
+
+table,th,td{
+  @apply border-2 border-black
+}
+
+td{
+  @apply p-4
+}

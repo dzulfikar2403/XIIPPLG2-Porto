@@ -5,6 +5,7 @@ export default {
     extend: {
       backgroundImage:{
         'dopImg': "url('./src/assets/bgDot.png')",
+        'abstract': "url('./src/assets/abstract-design.jpg')",
       }
     },
   },

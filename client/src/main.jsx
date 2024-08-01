@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import Store from "./redux/Store.jsx";
 import DashboardGallery from "./pages/DashboardGallery.jsx";
 import DashboardSiswa from "./pages/DashboardSiswa.jsx";
+import DashboardUsers from "./pages/DashboardUsers.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/dashboard/home" element={<Dashboard />} />
           <Route path="/dashboard/gallery" element={<DashboardGallery />} />
           <Route path="/dashboard/dataSiswa" element={<DashboardSiswa />} />
+          <Route path="/dashboard/users" element={<DashboardUsers />} />
         </Routes>
       </Router>
     </Provider>

@@ -59,6 +59,13 @@ const postUserLogin = async (req,res) => {
 
     const token = await jwt.sign({_id:emailMatch._id},process.env.SECRET,{ expiresIn: '1d' });
     res.json({email,token})
+
+
+
+
+
+
+    
     
   } catch (err) {
     res.json(err.message)

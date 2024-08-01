@@ -14,6 +14,7 @@ const DashboardLayout = ({children}) => {
           <NavLink to={"/dashboard/home"}>Dashboard</NavLink>
           <NavLink to={"/dashboard/gallery"}>Gallery</NavLink>
           <NavLink to={"/dashboard/dataSiswa"}>Data-Siswa</NavLink>
+          <NavLink to={"/dashboard/users"}>Users</NavLink>
         </div>
         <div className="flex justify-center">
           <button className="px-4 border-2 border-red-600 text-rose-600 my-8 rounded-3xl text-sm py-1 hover:bg-rose-600 hover:text-white" onClick={logout}>Logout</button>

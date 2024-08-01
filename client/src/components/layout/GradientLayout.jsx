@@ -102,7 +102,7 @@ const AboutSection = () => {
   );
 };
 
-const GallerySection = ({ data }) => {
+const GallerySection = ({ data,isError,isLoading }) => {
   return (
     <div id="Gallery" className="px-4 relative">
       <div className="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] bg-[#FFBD5B] blur-[150px] rounded-3xl w-40 h-40 md:w-80 md:h-64"></div>
@@ -112,14 +112,18 @@ const GallerySection = ({ data }) => {
           <Link to={"/gallery"} className="text-sm flex justify-end items-center gap-3 text-white font-light">
             see all memories <HiArrowNarrowRight className="w-6" />
           </Link>
-          <div className="grid grid-cols-1 place-items-center gap-12 md:gap-0 md:grid-cols-3">{data && data.map((el, i) => <CardPhotos key={i} data={el} scale={i + 1 === 2 ? 2 : 1} />)}</div>
+          <div className="grid grid-cols-1 place-items-center gap-12 md:gap-0 md:grid-cols-3">
+            {data && data.map((el, i) => <CardPhotos key={i} data={el} scale={i + 1 === 2 ? 2 : 1} />)}
+            {isError && <h3 className="text-red-500 font-semibold text-xl p-4">{isError}</h3>}
+            {isLoading && <h3 className="text-white font-semibold text-xl p-4">Loading...</h3>}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-const StudentSection = ({ data }) => {
+const StudentSection = ({ data,isError,isLoading }) => {
   return (
     <div id="Profile" className="px-4 py-4">
       <HeaderText text1={"Our"} text2={"Profiles"} />
@@ -128,7 +132,11 @@ const StudentSection = ({ data }) => {
           see all profiles <HiArrowNarrowRight className="w-6 h-8" />
         </Link>
         <div className="w-full px-4 md:px-4 py-4">
-          <div className="grid grid-cols-1 gap-14 place-items-center md:gap-0 md:grid-cols-4 py-2">{data && data.map((el, i) => <CardSiswa key={i} data={el} />)}</div>
+          <div className="grid grid-cols-1 gap-14 place-items-center md:gap-0 md:grid-cols-4 py-2">
+            {data && data.map((el, i) => <CardSiswa key={i} data={el} />)}
+            {isError && <h3 className="text-red-500 font-semibold text-xl p-4">{isError}</h3>}
+            {isLoading && <h3 className="text-white font-semibold text-xl p-4">Loading...</h3>}
+          </div>
         </div>
       </div>
     </div>

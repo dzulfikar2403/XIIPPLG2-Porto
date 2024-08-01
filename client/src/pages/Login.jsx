@@ -80,6 +80,7 @@ const Login = () => {
       </div>
       <div className="w-full">
         <div className="relative top-[50%] -translate-y-[50%]">
+          <img src={abstractImg} alt={abstractImg} className="w-full h-[30rem] rounded-2xl" />
           <div className="absolute bottom-0 w-full">
             <div className="w-[30rem] text-center mx-auto">
               <img src={logoClass} alt={logoClass} className="rounded-full mx-auto w-60 h-60 my-8" />
@@ -89,7 +90,6 @@ const Login = () => {
               <p className="text-sm py-2">Our practice actively checks complete environment configurations to ensure our application seamlessly supports student data portfolios.</p>
             </div>
           </div>
-          <img src={abstractImg} alt={abstractImg} className="w-full h-[30rem] rounded-2xl" />
         </div>
       </div>
     </div>

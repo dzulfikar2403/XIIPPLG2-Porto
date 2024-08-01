@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/fragment/Navbar";
 import GradientLayout from "../components/layout/GradientLayout";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { galleryDisplay, getGallery } from "../redux/reducer/gallerySlice";
+import { getDataSiswa, siswaDisplay } from "../redux/reducer/siswaSlice";
 
 const Home = () => {
-  const [thumbnail, setThumbnail] = useState();
-  const [siswa,setSiswa] = useState(null); 
-  const getDataGallery = async () => {
-    const res = await axios.get("http://localhost:3000/gallery");
-    const slice3 = res.data.slice(0, 3);
+  const dispatch = useDispatch();
+  const {gallery, isError, isLoading} = useSelector(state => state.gallerySlice)
+  const {dataSiswa, isError: errSiswa, isLoading: loadSiswa} = useSelector(state => state.siswaSlice)
 
-    setThumbnail(slice3);
-  };
+  useEffect(()=>{
+    dispatch(getGallery());
+    dispatch(getDataSiswa());
+  },[])
 
-  const getDataSiswa = async () => {
-    const res = await axios.get('http://localhost:3000/siswa/')
-    
-    const slice4 = res.data.slice(0, 4)
-    setSiswa(slice4);
-  }
-
-  useEffect(() => {
-    getDataGallery();
-    getDataSiswa();
-  }, []);
-
+  useEffect(()=>{
+    if(gallery.length > 0 && dataSiswa.length > 0){
+      dispatch(galleryDisplay())
+      dispatch(siswaDisplay())
+    }
+  },[dataSiswa.length,gallery.length])
 
   return (
     <GradientLayout>
       <Navbar arrName={["Home", "About", "Gallery", "Profile"]} />
       <GradientLayout.HeroSection />
       <GradientLayout.AboutSection />
-      <GradientLayout.GallerySection data={thumbnail}/>
-      <GradientLayout.StudentSection data={siswa} />
+      <GradientLayout.GallerySection data={gallery} isLoading={isLoading} isError={isError} />
+      <GradientLayout.StudentSection data={dataSiswa} isLoading={loadSiswa} isError={errSiswa} />
       <GradientLayout.FooterSection />
     </GradientLayout>
   );

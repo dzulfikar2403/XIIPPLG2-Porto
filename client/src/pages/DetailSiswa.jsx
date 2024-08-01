@@ -69,7 +69,7 @@ const DetailSiswa = () => {
                     <span>{detailSiswa.hobi.map(el => el).join(', ')}</span>
                   </h4>
                   <h4 className="text-xl text-white">
-                    <b>posisition : </b>
+                    <b>position : </b>
                     <span>{detailSiswa.jabatan}</span>
                   </h4>
                 </div>
