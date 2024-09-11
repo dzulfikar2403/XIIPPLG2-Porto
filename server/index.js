@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -6,6 +6,7 @@ const usersRouter = require("./routers/users");
 const galleryRouter = require("./routers/gallery");
 const siswaRouter = require("./routers/siswa");
 const app = express();
+const mongodbUrl = process.env.MONGODB_URL;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +14,7 @@ app.use(cors());
 
 //connect mongoose/mongodb
 mongoose
-  .connect("mongodb://127.0.0.1:27017/XIPPLG2")
+  .connect(mongodbUrl)
   .then(() => console.log("mongodb connection succes"))
   .catch((err) => console.log(`mongodb errcon : ${err}`));
 

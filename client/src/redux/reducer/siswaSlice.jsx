@@ -6,7 +6,14 @@ export const getDataSiswa = createAsyncThunk("data-siswa/getDataSiswa", async ()
   const {data} = await res;
 
   return data
-})
+});
+
+export const postDataSiswa = createAsyncThunk("data-siswa/postDataSiswa", async (formData) => {
+  const res = await axios.post('http://localhost:3000/siswa',formData);
+  const {data} = await res;
+
+  return data
+});
 
 const initialState = {
   dataSiswa: [],
