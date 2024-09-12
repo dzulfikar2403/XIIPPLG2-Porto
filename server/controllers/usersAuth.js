@@ -59,22 +59,9 @@ const postUserLogin = async (req,res) => {
 
     const token = await jwt.sign({_id:emailMatch._id},process.env.SECRET,{ expiresIn: '1d' });
     res.json({email,token})
-
-
-
-
-
-
-    
-    
   } catch (err) {
     res.json(err.message)
   } 
-}
-
-const updateUser = (req,res) => {
-  const {id} = req.params;
-  res.send('succes connect put user id ' + id)
 }
 
 const deleteUser = async (req,res) => {
@@ -87,4 +74,4 @@ const deleteUser = async (req,res) => {
   }
 }
 
-module.exports = {getUser,postUserRegister,postUserLogin,updateUser,deleteUser}
+module.exports = {getUser,postUserRegister,postUserLogin,deleteUser}
