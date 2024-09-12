@@ -11,7 +11,6 @@ const DetailGallery = () => {
 
   const fetchGalleryById = async () => {
     const res = await axios.get(`https://secondary-sgd-api.vercel.app/gallery/${id}`);
-    console.log(res.data);
     setGalleryById(res.data);
   };
 

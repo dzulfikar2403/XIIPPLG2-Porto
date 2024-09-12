@@ -76,7 +76,7 @@ const DetailSiswa = () => {
 
                 {/* button section */}
                 <div className="flex gap-2 md:py-4">
-                  <button className="bg-black text-[#FFBD5B] py-1 px-4 font-medium rounded-3xl flex items-center gap-2" onClick={() => window.open(`/cv/${detailSiswa.cv}`, '_blank')}>
+                  <button className="bg-black text-[#FFBD5B] py-1 px-4 font-medium rounded-3xl flex items-center gap-2" onClick={() => window.open(`/cv/${detailSiswa.cv}`)}>
                     <span>Resume</span>
                     <HiArrowNarrowRight />
                   </button>
