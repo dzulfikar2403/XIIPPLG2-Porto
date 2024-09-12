@@ -11,7 +11,7 @@ const mongodbUrl = process.env.MONGODB_URL;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ["https://secondary-sgd.vercel.app/"]
+  origin: ["https://secondary-sgd.vercel.app"],
 }));
 
 //connect mongoose/mongodb

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getGallery = createAsyncThunk("gallery/getGallery", async () => {
-  const res = await axios.get("http://localhost:3000/gallery");
+  const res = await axios.get("https://secondary-sgd-api.vercel.app/gallery");
   const { data } = await res;
 
   return data;

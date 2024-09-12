@@ -16,7 +16,7 @@ const DetailSiswa = () => {
   const [detailSiswa, setDetailSiswa] = useState(null);
 
   const fetchDetailData = async () => {
-    const res = await axios.get(`http://localhost:3000/siswa/${id}`);
+    const res = await axios.get(`https://secondary-sgd-api.vercel.app/siswa/${id}`);
     setDetailSiswa(res.data);
   };
 

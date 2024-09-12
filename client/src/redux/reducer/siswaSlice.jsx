@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getDataSiswa = createAsyncThunk("data-siswa/getDataSiswa", async () => {
-  const res = await axios.get('http://localhost:3000/siswa');
+  const res = await axios.get('https://secondary-sgd-api.vercel.app/siswa');
   const {data} = await res;
 
   return data
 });
 
 export const postDataSiswa = createAsyncThunk("data-siswa/postDataSiswa", async (formData) => {
-  const res = await axios.post('http://localhost:3000/siswa',formData);
+  const res = await axios.post('https://secondary-sgd-api.vercel.app/siswa',formData);
   const {data} = await res;
 
   return data

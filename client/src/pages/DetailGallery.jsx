@@ -10,7 +10,7 @@ const DetailGallery = () => {
   const [mainPic, setMainpic] = useState();
 
   const fetchGalleryById = async () => {
-    const res = await axios.get(`http://localhost:3000/gallery/${id}`);
+    const res = await axios.get(`https://secondary-sgd-api.vercel.app/gallery/${id}`);
     console.log(res.data);
     setGalleryById(res.data);
   };

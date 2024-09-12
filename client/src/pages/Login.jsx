@@ -31,7 +31,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const checkData = await axios.post("http://localhost:3000/users/login", preData);
+    const checkData = await axios.post("https://secondary-sgd-api.vercel.app/users/login", preData);
 
     if (typeof checkData.data === "object") {
       localStorage.setItem("user", JSON.stringify(checkData.data));
