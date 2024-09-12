@@ -10,7 +10,9 @@ const mongodbUrl = process.env.MONGODB_URL;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: ["https://secondary-sgd.vercel.app/"]
+}));
 
 //connect mongoose/mongodb
 mongoose
@@ -27,7 +29,7 @@ app.use("/users", usersRouter);
 app.use("/gallery", galleryRouter);
 app.use("/siswa", siswaRouter);
 
-app.listen(process.env.PORT, (err) => {
+app.listen(process.env.PORT || 3000, (err) => {
   if (err) console.log(`errcon : ${err}`);
   console.log(`succes connect runnning on port ${process.env.PORT}`);
 });
